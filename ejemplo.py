@@ -29,7 +29,7 @@
 #     print("El jugador ha ahorrado. Dinero:", dinero, "Dignidad:", dignidad, "Hambre:", hambre)
 # else:
 #     print("Opción no válida.")
-    
+"""
 class HijoProdigo:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -60,3 +60,20 @@ opcion2 = input("Ingrese el número de la opción que desea elegir: ")
 if opcion2 == "1":    
     hijo = HijoProdigo("AA")
     hijo.gastar_en_fiestas()
+"""
+class Menu:
+    def iniciar(self):
+        print("1. Saludar")
+        print("2. Salir")
+
+        opcion = input("Elige una opción: ")
+
+        if opcion == "1":
+            print("Hola")
+        elif opcion == "2":
+            print("Adiós")
+        else:
+            print("Opción no válida")
+
+menu = MenuSimple()
+menu.iniciar()
