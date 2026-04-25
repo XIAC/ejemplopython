@@ -56,7 +56,46 @@ class HijoProdigo:
         self.hambre -= 3
         print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
         
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
-    hijo.gastar_en_fiestas()
+    def trabajar(self):
+        self.dinero += 40
+        self.dignidad += 20
+        self.hambre += 5
+        print(f"{self.nombre} trabajó duro. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+
+    def reflexionar(self):
+        print(f"Hambre actual: {self.hambre}")
+        if self.hambre > 40:
+            self.arrepentimiento += 60
+            print(f"{self.nombre} reflexionó.")
+        else:
+            print(f"{self.nombre} aún no siente arrepentimiento.")
+
+hijo = HijoProdigo("Fernanda")
+
+while True:
+    print("""
+1. Gastar en fiestas
+2. Invertir
+3. Ahorrar
+4. Trabajar
+5. Reflexionar
+0. Salir
+""")
+    
+    opcion = input("Elige una opción: ")
+
+    if opcion == "1":
+        hijo.gastar_en_fiestas()
+    elif opcion == "2":
+        hijo.invertir()
+    elif opcion == "3":
+        hijo.ahorrar()
+    elif opcion == "4":
+        hijo.trabajar()
+    elif opcion == "5":
+        hijo.reflexionar()
+    elif opcion == "0":
+        print("Saliendo del programa...")
+        break
+    else:
+        print("Opción inválida")
