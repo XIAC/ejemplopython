@@ -1,35 +1,5 @@
-# nombre = input("¿Cuál es tu nombre? ")
-# print("¡Hola, " + nombre + "! Bienvenido al mundo de la programación en Python.")
-# print(f"Bienvenido al mundo de la programación en Python, {nombre}!")
-# dinero = 100
-# dignidad = 50
-# hambre = 0
-# print("El jugador ha recibido su herencia.")
+import random
 
-# print("Que desea hacer el jugador?")
-# print("1. Gastar dinero en fiestas")
-# print("2. Invertir una parte")
-# print("3. Ahorrar")
-
-# opcion = input("Ingrese el número de la opción que desea elegir: ")
-# if opcion == "1":
-#     dinero -= 20
-#     dignidad -= 10
-#     hambre += 5
-#     print("El jugador ha gastado dinero en fiestas. Dinero:", dinero, "Dignidad:", dignidad, "Hambre:", hambre)
-# elif opcion == "2":
-#     dinero -= 30
-#     dignidad += 5
-#     hambre += 2
-#     print("El jugador ha invertido una parte de su dinero. Dinero:", dinero, "Dignidad:", dignidad, "Hambre:", hambre)
-# elif opcion == "3":
-#     dinero += 10
-#     dignidad += 2
-#     hambre -= 3
-#     print("El jugador ha ahorrado. Dinero:", dinero, "Dignidad:", dignidad, "Hambre:", hambre)
-# else:
-#     print("Opción no válida.")
-    
 class HijoProdigo:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -37,26 +7,108 @@ class HijoProdigo:
         self.dignidad = 50
         self.hambre = 0
         self.arrepentimiento = 0
+        self.vivo = True
+
+    def mostrar_estado(self):
+        print(f"\n--- Estado de {self.nombre} ---")
+        print(f"Dinero: {self.dinero}")
+        print(f"Dignidad: {self.dignidad}")
+        print(f"Hambre: {self.hambre}")
+        print(f"Arrepentimiento: {self.arrepentimiento}")
+
+    def ajustar_valores(self):
+        if self.dinero < 0:
+            self.dinero = 0
+        if self.hambre < 0:
+            self.hambre = 0
+        if self.dignidad < 0:
+            self.dignidad = 0
+
+    def verificar_estado(self):
+        if self.hambre >= 100:
+            print("\n💀 Has perdido: moriste de hambre.")
+            self.vivo = False
+        elif self.dignidad <= 0:
+            print("\n💀 Has perdido: perdiste toda tu dignidad.")
+            self.vivo = False
+        elif self.arrepentimiento >= 100:
+            print("\n✨ Te has arrepentido completamente y decides volver a casa.")
+            self.vivo = False
 
     def gastar_en_fiestas(self):
+        print("\n🎉 Te vas de fiesta...")
         self.dinero -= 20
         self.dignidad -= 10
         self.hambre += 5
-        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        self.arrepentimiento += 15
 
     def invertir(self):
-        self.dinero -= 30
-        self.dignidad += 5
-        self.hambre += 2
-        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print("\n📈 Decides invertir tu dinero...")
+        resultado = random.choice(["ganancia", "perdida"])
+
+        if resultado == "ganancia":
+            print("💰 ¡Tu inversión fue exitosa!")
+            self.dinero += 40
+            self.dignidad += 10
+        else:
+            print("📉 La inversión falló...")
+            self.dinero -= 30
+            self.dignidad -= 5
+
+        self.hambre += 3
+        self.arrepentimiento += 5
 
     def ahorrar(self):
+        print("\n🏦 Decides ahorrar...")
         self.dinero += 10
-        self.dignidad += 2
-        self.hambre -= 3
-        print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
-    hijo.gastar_en_fiestas()
+        self.dignidad += 5
+        self.hambre += 2
+        self.arrepentimiento -= 2
+
+    def evento_aleatorio(self):
+        evento = random.choice(["robo", "regalo", "nada"])
+
+        if evento == "robo":
+            print("\n⚠️ ¡Te robaron dinero!")
+            self.dinero -= 15
+        elif evento == "regalo":
+            print("\n🎁 Recibes un regalo inesperado.")
+            self.dinero += 20
+
+
+# PROGRAMA PRINCIPAL
+
+nombre = input("¿Cuál es tu nombre? ")
+hijo = HijoProdigo(nombre)
+
+print(f"\nBienvenido {nombre}, has recibido tu herencia...")
+
+while hijo.vivo:
+    hijo.mostrar_estado()
+
+    print("\n¿Qué deseas hacer?")
+    print("1. Gastar en fiestas")
+    print("2. Invertir")
+    print("3. Ahorrar")
+    print("4. Salir")
+
+    opcion = input("Elige una opción: ")
+
+    if opcion == "1":
+        hijo.gastar_en_fiestas()
+    elif opcion == "2":
+        hijo.invertir()
+    elif opcion == "3":
+        hijo.ahorrar()
+    elif opcion == "4":
+        print("\n👋 Has decidido abandonar el juego.")
+        break
+    else:
+        print("❌ Opción no válida")
+        continue
+
+    hijo.evento_aleatorio()
+    hijo.ajustar_valores()
+    hijo.verificar_estado()
+
+print("\n--- Fin del juego ---")
