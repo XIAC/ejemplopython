@@ -36,27 +36,45 @@ class HijoProdigo:
         self.dinero = 100
         self.dignidad = 50
         self.hambre = 0
-        self.arrepentimiento = 0
 
     def gastar_en_fiestas(self):
         self.dinero -= 20
         self.dignidad -= 10
         self.hambre += 5
-        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print("Gastaste en fiestas")
 
     def invertir(self):
         self.dinero -= 30
         self.dignidad += 5
         self.hambre += 2
-        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print("Invertiste dinero")
 
     def ahorrar(self):
         self.dinero += 10
         self.dignidad += 2
         self.hambre -= 3
-        print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
+        print("Ahorraste dinero")
+
+    def mostrar_estado(self):
+        print(f"Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+
+
+
+hijo = HijoProdigo("AA")
+
+print("1. Fiestas")
+print("2. Invertir")
+print("3. Ahorrar")
+
+opcion = input("Elige una opción: ")
+
+if opcion == "1":
     hijo.gastar_en_fiestas()
+elif opcion == "2":
+    hijo.invertir()
+elif opcion == "3":
+    hijo.ahorrar()
+else:
+    print("Opción inválida")
+
+hijo.mostrar_estado()
