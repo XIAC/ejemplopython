@@ -36,27 +36,40 @@ class HijoProdigo:
         self.dinero = 100
         self.dignidad = 50
         self.hambre = 0
-        self.arrepentimiento = 0
+def gastar(dinero, dignidad):
+    dinero -= 15
+    dignidad -= 5
+    print("Gastaste dinero...")
+    return dinero, dignidad
 
-    def gastar_en_fiestas(self):
-        self.dinero -= 20
-        self.dignidad -= 10
-        self.hambre += 5
-        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+def trabajar(dinero, hambre):
+    dinero += 20
+    hambre += 10
+    print("Trabajaste para ganar dinero...")
+    return dinero, hambre
 
-    def invertir(self):
-        self.dinero -= 30
-        self.dignidad += 5
-        self.hambre += 2
-        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+nombre = input("Ingresa tu nombre: ")
+hijo = HijoProdigo(nombre)
 
-    def ahorrar(self):
-        self.dinero += 10
-        self.dignidad += 2
-        self.hambre -= 3
-        print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
-    hijo.gastar_en_fiestas()
+while hijo.dinero > 0:
+    print("\nSigues viviendo lejos de casa...")
+    print(f"Dinero: {hijo.dinero}, Dignidad: {hijo.dignidad}, Hambre: {hijo.hambre}")
+    
+    print("\n¿Qué deseas hacer?")
+    print("1. Gastar")
+    print("2. Trabajar")
+
+    opcion = input("Elige una opción: ")
+
+    if opcion == "1":
+        hijo.dinero, hijo.dignidad = gastar(hijo.dinero, hijo.dignidad)
+    elif opcion == "2":
+        hijo.dinero, hijo.hambre = trabajar(hijo.dinero, hijo.hambre)
+    else:
+        print("Opción inválida")
+
+    if hijo.hambre > 50:
+        print("Tienes demasiada hambre...")
+        hijo.dinero -= 10
+
+print("\nTe has quedado sin dinero... Fin del juego.")
