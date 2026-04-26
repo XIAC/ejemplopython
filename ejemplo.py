@@ -56,7 +56,77 @@ class HijoProdigo:
         self.hambre -= 3
         print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
         
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
-    hijo.gastar_en_fiestas()
+##opcion2 = input("Ingrese el número de la opción que desea elegir: ")
+#    if opcion2 == "1":    
+#    hijo = HijoProdigo("AA")
+#    hijo.gastar_en_fiestas()
+
+
+class Practica:
+    def __init__(self):
+        self.nombre = ""
+        self.dinero = 100
+        self.dignidad = 50
+        self.hambre = 0
+
+    def iniciar(self):
+        self.nombre = input("¿Cuál es tu nombre? ")
+        print(f"\nBienvenido {self.nombre}, has recibido tu herencia.")
+
+        while True:
+            self.mostrar_estado()
+
+            print("\n¿Qué deseas hacer?")
+            print("1. Gastar en fiestas")
+            print("2. Invertir")
+            print("3. Ahorrar")
+            print("4. Salir")
+
+            opcion = input("Elige una opción: ")
+
+            if opcion == "1":
+                self.gastar()
+            elif opcion == "2":
+                self.invertir()
+            elif opcion == "3":
+                self.ahorrar()
+            elif opcion == "4":
+                print("\nFin del juego.")
+                break
+            else:
+                print("Opción no válida.")
+
+            self.evaluar()
+
+    def mostrar_estado(self):
+        print(f"\nEstado de {self.nombre}:")
+        print(f"Dinero: {self.dinero} | Dignidad: {self.dignidad} | Hambre: {self.hambre}")
+
+    def gastar(self):
+        self.dinero -= 20
+        self.dignidad -= 10
+        self.hambre += 5
+        print("Has gastado dinero en fiestas.")
+
+    def invertir(self):
+        self.dinero -= 30
+        self.dignidad += 5
+        self.hambre += 2
+        print("Has invertido dinero.")
+
+    def ahorrar(self):
+        self.dinero += 10
+        self.dignidad += 2
+        self.hambre -= 3
+        print("Has ahorrado dinero.")
+
+    def evaluar(self):
+        if self.dinero <= 0:
+            print("Te quedaste sin dinero.")
+        if self.hambre >= 15:
+            print("Tienes demasiada hambre.")
+        if self.dignidad <= 0:
+            print("Has perdido toda tu dignidad.")
+           
+juego = Practica()
+juego.iniciar()
