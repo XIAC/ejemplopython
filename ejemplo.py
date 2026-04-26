@@ -55,8 +55,27 @@ class HijoProdigo:
         self.dignidad += 2
         self.hambre -= 3
         print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
+
+    # NUEVA FUNCIÓN
+    def arrepentirse(self):
+        self.arrepentimiento += 20
+        self.dignidad += 15
+        self.hambre -= 10
+        print(f"{self.nombre} se ha arrepentido y ha vuelto a casa. Arrepentimiento: {self.arrepentimiento}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+
+
+# Uso del programa
+opcion2 = input("Ingrese el número de la opción que desea elegir (1: fiesta, 2: invertir, 3: ahorrar, 4: arrepentirse): ")
+
+hijo = HijoProdigo("AA")
+
+if opcion2 == "1":
     hijo.gastar_en_fiestas()
+elif opcion2 == "2":
+    hijo.invertir()
+elif opcion2 == "3":
+    hijo.ahorrar()
+elif opcion2 == "4":
+    hijo.arrepentirse()
+else:
+    print("Opción no válida")
