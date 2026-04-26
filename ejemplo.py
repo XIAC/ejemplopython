@@ -58,5 +58,34 @@ class HijoProdigo:
         
 opcion2 = input("Ingrese el número de la opción que desea elegir: ")
 if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
+    hijo = HijoProdigo("JOSE")
     hijo.gastar_en_fiestas()
+
+######  Mi clase y funcion 
+
+class Padre:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.paciencia = 100
+
+    def aconsejar(self, hijo):
+        hijo.dignidad += 10
+        hijo.arrepentimiento += 5
+        self.paciencia -= 10
+        print(f"{self.nombre} aconseja a {hijo.nombre}. Dignidad del hijo: {hijo.dignidad}, Arrepentimiento: {hijo.arrepentimiento}")
+
+def mostrar_estado(hijo):
+    print(f"Estado de {hijo.nombre}: Dinero={hijo.dinero}, Dignidad={hijo.dignidad}, Hambre={hijo.hambre}, Arrepentimiento={hijo.arrepentimiento}")
+
+opcion2 = input("Ingrese el número de la opción que desea elegir: ")
+
+if opcion2 == "1":    
+    hijo = HijoProdigo("JOSE")
+    hijo.gastar_en_fiestas()
+    mostrar_estado(hijo)
+
+elif opcion2 == "2":
+    hijo = HijoProdigo("JOSE")
+    padre = Padre("PEDRO")
+    padre.aconsejar(hijo)
+    mostrar_estado(hijo)
