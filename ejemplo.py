@@ -38,25 +38,59 @@ class HijoProdigo:
         self.hambre = 0
         self.arrepentimiento = 0
 
+    def mostrar_estado(self):
+        print(f"\nEstado de {self.nombre}:")
+        print(f"Dinero: {self.dinero}")
+        print(f"Dignidad: {self.dignidad}")
+        print(f"Hambre: {self.hambre}")
+        print(f"Arrepentimiento: {self.arrepentimiento}")
+
     def gastar_en_fiestas(self):
         self.dinero -= 20
         self.dignidad -= 10
         self.hambre += 5
-        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print(f"{self.nombre} gastó dinero en fiestas.")
 
     def invertir(self):
         self.dinero -= 30
         self.dignidad += 5
         self.hambre += 2
-        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print(f"{self.nombre} invirtió su dinero.")
 
     def ahorrar(self):
         self.dinero += 10
         self.dignidad += 2
         self.hambre -= 3
-        print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
-    hijo.gastar_en_fiestas()
+        print(f"{self.nombre} ahorró dinero.")
+
+
+# Crear personaje
+nombre = input("Ingrese el nombre del hijo pródigo: ")
+hijo = HijoProdigo(nombre)
+
+# Menú
+while True:
+    print("\n--- MENÚ ---")
+    print("1. Gastar en fiestas")
+    print("2. Invertir")
+    print("3. Ahorrar")
+    print("4. Ver estado")
+    print("5. Salir")
+
+    opcion = input("Elija una opción: ")
+
+    if opcion == "1":
+        hijo.gastar_en_fiestas()
+    elif opcion == "2":
+        hijo.invertir()
+    elif opcion == "3":
+        hijo.ahorrar()
+    elif opcion == "4":
+        hijo.mostrar_estado()
+    elif opcion == "5":
+        print("Fin del juego.")
+        break
+    else:
+        print("Opción inválida.")
+
+    hijo.mostrar_estado()
