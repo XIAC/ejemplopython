@@ -10,6 +10,7 @@
 # print("1. Gastar dinero en fiestas")
 # print("2. Invertir una parte")
 # print("3. Ahorrar")
+# print("4. Ir de viaje")
 
 # opcion = input("Ingrese el número de la opción que desea elegir: ")
 # if opcion == "1":
@@ -42,21 +43,55 @@ class HijoProdigo:
         self.dinero -= 20
         self.dignidad -= 10
         self.hambre += 5
-        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print(f"{self.nombre} ha gastado en fiestas.")
+        self.mostrar_estado()
 
     def invertir(self):
         self.dinero -= 30
         self.dignidad += 5
         self.hambre += 2
-        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print(f"{self.nombre} ha invertido dinero.")
+        self.mostrar_estado()
 
     def ahorrar(self):
         self.dinero += 10
         self.dignidad += 2
         self.hambre -= 3
-        print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
+        print(f"{self.nombre} ha ahorrado.")
+        self.mostrar_estado()
+
+    # 🔹 NUEVA OPCIÓN 4
+    def ir_de_viaje(self):
+        self.dinero -= 40
+        self.dignidad += 10
+        self.hambre += 8
+        self.arrepentimiento += 5
+        print(f"{self.nombre} se fue de viaje ✈️")
+        self.mostrar_estado()
+
+    def mostrar_estado(self):
+        print(f"Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}, Arrepentimiento: {self.arrepentimiento}")
+
+
+# 🔹 PROGRAMA PRINCIPAL
+nombre = input("¿Cuál es tu nombre? ")
+hijo = HijoProdigo(nombre)
+
+print("\n¿Qué desea hacer?")
+print("1. Gastar dinero en fiestas")
+print("2. Invertir")
+print("3. Ahorrar")
+print("4. Ir de viaje")
+
+opcion = input("Ingrese el número de la opción: ")
+
+if opcion == "1":
     hijo.gastar_en_fiestas()
+elif opcion == "2":
+    hijo.invertir()
+elif opcion == "3":
+    hijo.ahorrar()
+elif opcion == "4":
+    hijo.ir_de_viaje()
+else:
+    print("Opción no válida.")
