@@ -33,30 +33,48 @@
 class HijoProdigo:
     def __init__(self, nombre):
         self.nombre = nombre
-        self.dinero = 100
+        self.dinero = 10
         self.dignidad = 50
         self.hambre = 0
+        self.deuda = 0
         self.arrepentimiento = 0
 
     def gastar_en_fiestas(self):
-        self.dinero -= 20
+        gasto = 20
+        if self.dinero >= gasto:
+            self.dinero -= gasto
+        else:
+            # no alcanza: gasta lo que tiene y el resto se suma a la deuda
+            self.deuda += gasto - self.dinero
+            self.dinero = 0
         self.dignidad -= 10
+        if self.dignidad < 0:
+            self.dignidad = 0
         self.hambre += 5
-        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Deuda: {self.deuda}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
 
     def invertir(self):
-        self.dinero -= 30
+        gasto = 30
+        if self.dinero >= gasto:
+            self.dinero -= gasto
+        else:
+            self.deuda += gasto - self.dinero
+            self.dinero = 0
         self.dignidad += 5
         self.hambre += 2
-        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Deuda: {self.deuda}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
 
     def ahorrar(self):
         self.dinero += 10
         self.dignidad += 2
         self.hambre -= 3
-        print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
+        if self.hambre < 0:
+            self.hambre = 0
+        print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Deuda: {self.deuda}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+
+nombre = input("¿Cuál es tu nombre? ")
+hijo = HijoProdigo(nombre)
+
 opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
+if opcion2 == "1":
     hijo.gastar_en_fiestas()
