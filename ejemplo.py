@@ -38,25 +38,73 @@ class HijoProdigo:
         self.hambre = 0
         self.arrepentimiento = 0
 
-    def gastar_en_fiestas(self):
-        self.dinero -= 20
-        self.dignidad -= 10
-        self.hambre += 5
-        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+    def gastar_todo(self):
+        self.dinero = 0
+        self.dignidad -= 20
+        self.hambre += 50
+        print("Has gastado todo en fiestas...")
 
     def invertir(self):
         self.dinero -= 30
+        self.dinero += 20  # ganancia
         self.dignidad += 5
         self.hambre += 2
-        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print("Has invertido una parte de tu dinero.")
 
     def ahorrar(self):
         self.dinero += 10
         self.dignidad += 2
         self.hambre -= 3
-        print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
-    hijo.gastar_en_fiestas()
+        print("Has decidido ahorrar.")
+
+    def trabajar(self):
+        self.dinero += 25
+        self.dignidad += 10
+        self.hambre += 10
+        print("Has trabajado duro para ganar dinero.")
+
+    def reflexionar(self):
+        if self.hambre > 40:
+            self.arrepentimiento += 20
+            print("El hambre te hace reflexionar sobre tus decisiones...")
+        else:
+            print("Aún no sientes necesidad de reflexionar.")
+
+    def mostrar_estado(self):
+        print("\n--- Estado del jugador ---")
+        print("Nombre:", self.nombre)
+        print("Dinero:", self.dinero)
+        print("Dignidad:", self.dignidad)
+        print("Hambre:", self.hambre)
+        print("Arrepentimiento:", self.arrepentimiento)
+
+
+# Programa principal
+nombre = input("¿Cuál es tu nombre? ")
+jugador = HijoProdigo(nombre)
+
+print(f"\n¡Hola, {jugador.nombre}! Has recibido tu herencia.\n")
+
+print("¿Qué deseas hacer?")
+print("1. Gastar todo en fiestas")
+print("2. Invertir")
+print("3. Ahorrar")
+print("4. Trabajar")
+print("5. Reflexionar")
+
+opcion = input("Elige una opción: ")
+
+if opcion == "1":
+    jugador.gastar_todo()
+elif opcion == "2":
+    jugador.invertir()
+elif opcion == "3":
+    jugador.ahorrar()
+elif opcion == "4":
+    jugador.trabajar()
+elif opcion == "5":
+    jugador.reflexionar()
+else:
+    print("Opción no válida.")
+
+jugador.mostrar_estado()
