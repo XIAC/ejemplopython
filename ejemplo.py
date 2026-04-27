@@ -56,7 +56,20 @@ class HijoProdigo:
         self.hambre -= 3
         print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
         
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
+nombre_hijo = input ("Ingrese el nombre del Hijo: ")
+print("1. Gastar dinero en fiestas")
+print("2. Invertir una parte")
+print("3. Ahorrar")
+opcion = input("Ingrese el número de la opción que desea elegir: ")
+
+if opcion == "1":    
+    hijo = HijoProdigo(nombre_hijo)
     hijo.gastar_en_fiestas()
+elif opcion == "2":
+    hijo = HijoProdigo(nombre_hijo)
+    hijo.invertir()
+elif opcion == "3":
+    hijo = HijoProdigo(nombre_hijo)
+    hijo.ahorrar()
+else:
+    print("Opción no válida.")
