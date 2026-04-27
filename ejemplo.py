@@ -1,35 +1,3 @@
-# nombre = input("¿Cuál es tu nombre? ")
-# print("¡Hola, " + nombre + "! Bienvenido al mundo de la programación en Python.")
-# print(f"Bienvenido al mundo de la programación en Python, {nombre}!")
-# dinero = 100
-# dignidad = 50
-# hambre = 0
-# print("El jugador ha recibido su herencia.")
-
-# print("Que desea hacer el jugador?")
-# print("1. Gastar dinero en fiestas")
-# print("2. Invertir una parte")
-# print("3. Ahorrar")
-
-# opcion = input("Ingrese el número de la opción que desea elegir: ")
-# if opcion == "1":
-#     dinero -= 20
-#     dignidad -= 10
-#     hambre += 5
-#     print("El jugador ha gastado dinero en fiestas. Dinero:", dinero, "Dignidad:", dignidad, "Hambre:", hambre)
-# elif opcion == "2":
-#     dinero -= 30
-#     dignidad += 5
-#     hambre += 2
-#     print("El jugador ha invertido una parte de su dinero. Dinero:", dinero, "Dignidad:", dignidad, "Hambre:", hambre)
-# elif opcion == "3":
-#     dinero += 10
-#     dignidad += 2
-#     hambre -= 3
-#     print("El jugador ha ahorrado. Dinero:", dinero, "Dignidad:", dignidad, "Hambre:", hambre)
-# else:
-#     print("Opción no válida.")
-    
 class HijoProdigo:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -55,8 +23,36 @@ class HijoProdigo:
         self.dignidad += 2
         self.hambre -= 3
         print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
-    hijo.gastar_en_fiestas()
+    def trabajar(self):
+        self.dinero += 15
+        self.hambre += 10
+
+    def reflexionar(self):
+        if self.hambre > 40:
+            self.arrepentimiento += 10
+
+    def estado(self):
+    print(f"Nom:{self.nombre} Din:{self.dinero} Dig:{self.dignidad} Ham:{self.hambre} Arr:{self.arrepentimiento}")
+nombre = input("Nombre: ")
+hijo = HijoProdigo(nombre)
+
+print("El jugador ha recibido su herencia")
+opcion = input("1.Fiestas 2.Invertir 3.Ahorrar: ")
+
+if opcion == "1": hijo.gastar_en_fiestas()
+elif opcion == "2": hijo.invertir()
+elif opcion == "3": hijo.ahorrar()
+
+hijo.estado()
+
+while hijo.dinero > 0:
+    print("Lejos de casa...")
+    hijo.dinero -= 10; hijo.hambre += 5; hijo.reflexionar()
+
+    if hijo.dinero <= 0: break
+
+    if input("1.Trabajar 2.Nada: ") == "1": hijo.trabajar()
+
+    hijo.estado()
+
+print("Sin dinero"); hijo.estado()
