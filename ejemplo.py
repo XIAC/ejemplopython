@@ -29,7 +29,7 @@
 #     print("El jugador ha ahorrado. Dinero:", dinero, "Dignidad:", dignidad, "Hambre:", hambre)
 # else:
 #     print("Opción no válida.")
-    
+
 class HijoProdigo:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -39,24 +39,51 @@ class HijoProdigo:
         self.arrepentimiento = 0
 
     def gastar_en_fiestas(self):
-        self.dinero -= 20
-        self.dignidad -= 10
-        self.hambre += 5
-        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        self.remove_cash(20)
+        self.remove_status(10)
+        self.add_hungry(5)
+
+        print(
+            f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
 
     def invertir(self):
-        self.dinero -= 30
-        self.dignidad += 5
-        self.hambre += 2
-        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        self.remove_cash(30)
+        self.add_status(5)
+        self.add_hungry(2)
+
+        print(
+            f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
 
     def ahorrar(self):
-        self.dinero += 10
-        self.dignidad += 2
-        self.hambre -= 3
+        self.add_cash(10)
+        self.add_status(2)
+        self.remove_hungry(3)
+
         print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
+
+    def add_cash(self, amount):
+        self.dinero += amount
+
+    def remove_cash(self, amount):
+        if self.dinero < amount:
+            print(f"El monto {amount} es mayor a la cantidad de dinero disponible {self.dinero}, estas endeudado")
+
+        self.dinero -= amount
+
+    def add_hungry(self, amount):
+        self.hambre += amount
+
+    def remove_hungry(self, amount):
+        self.hambre -= amount
+
+    def add_status(self, amount):
+        self.dignidad += amount
+
+    def remove_status(self, amount):
+        self.dignidad -= amount
+
+
 opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
+if opcion2 == "1":
     hijo = HijoProdigo("AA")
     hijo.gastar_en_fiestas()
