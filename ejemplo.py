@@ -29,7 +29,8 @@
 #     print("El jugador ha ahorrado. Dinero:", dinero, "Dignidad:", dignidad, "Hambre:", hambre)
 # else:
 #     print("Opción no válida.")
-    
+
+
 class HijoProdigo:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -42,21 +43,49 @@ class HijoProdigo:
         self.dinero -= 20
         self.dignidad -= 10
         self.hambre += 5
-        print(f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print(
+            f"{self.nombre} ha gastado dinero en fiestas. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}"
+        )
 
     def invertir(self):
         self.dinero -= 30
         self.dignidad += 5
         self.hambre += 2
-        print(f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
+        print(
+            f"{self.nombre} ha invertido una parte de su dinero. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}"
+        )
 
     def ahorrar(self):
         self.dinero += 10
         self.dignidad += 2
         self.hambre -= 3
-        print(f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}")
-        
-opcion2 = input("Ingrese el número de la opción que desea elegir: ")
-if opcion2 == "1":    
-    hijo = HijoProdigo("AA")
-    hijo.gastar_en_fiestas()
+        print(
+            f"{self.nombre} ha ahorrado. Dinero: {self.dinero}, Dignidad: {self.dignidad}, Hambre: {self.hambre}"
+        )
+
+
+def show_menu():
+    print("=============MENÚ===============")
+    print("1. Gastar en fiestas")
+    print("2. Invertir")
+    print("3. Ahorrar")
+    print("4. Salir")
+
+
+hijo_prodigo = HijoProdigo("Luis Miguel")
+loop = True
+
+while loop:
+    option = int(input("Ingrese el número de la opción que desea elegir: "))
+
+    match option:
+        case 1:
+            hijo_prodigo.gastar_en_fiestas()
+        case 2:
+            hijo_prodigo.invertir()
+        case 3:
+            hijo_prodigo.ahorrar()
+        case 4:
+            loop = False
+
+print("Programa finalizado exitosamente")
