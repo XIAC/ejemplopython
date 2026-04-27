@@ -10,7 +10,7 @@ def mostrar_menu():
 
 
 def main():
-    nombre = input("Ingrese el nombre del personaje: ")
+    nombre = input("Ingrese el nombre del personaje : ")
     hijo = HijoProdigo(nombre)
 
     while True:

@@ -14,4 +14,4 @@ acciones = {
         "costo": 0,
         "cambios": {"dinero": 10, "dignidad": 2, "hambre": -3}
     }
-}
+} 

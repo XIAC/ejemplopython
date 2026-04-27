@@ -23,7 +23,7 @@ class HijoProdigo:
     def estado(self):
         return (
             f"\n{self.nombre}\n"
-            f"Dinero: {self.dinero}\n"
+            f"Dinero : {self.dinero}\n"
             f"Dignidad: {self.dignidad}\n"
             f"Hambre: {self.hambre}\n"
         )
